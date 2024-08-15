@@ -15,8 +15,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import NextLink from "next/link";
+
 const schema = yup.object().shape({
-  name: yup.string().required("Nome é obrigatório"),
   email: yup.string().email("E-mail inválido").required("E-mail é obrigatório"),
   password: yup
     .string()
@@ -24,7 +24,7 @@ const schema = yup.object().shape({
     .required("Senha é obrigatória"),
 });
 
-export default function SignUpForm() {
+export default function LoginForm() {
   const {
     register,
     handleSubmit,
@@ -63,18 +63,11 @@ export default function SignUpForm() {
         boxShadow="lg"
       >
         <Heading as="h2" size="lg" textAlign="center" mb={6}>
-          Cadastre-se
+          Entrar
         </Heading>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack spacing={4}>
-            <FormControl id="name" isInvalid={!!errors.name}>
-              <FormLabel>Nome</FormLabel>
-              <Input type="text" {...register("name")} />
-              <Text color="red.500" fontSize="sm">
-                {errors.name?.message}
-              </Text>
-            </FormControl>
             <FormControl id="email" isInvalid={!!errors.email}>
               <FormLabel>Email</FormLabel>
               <Input type="email" {...register("email")} />
@@ -97,9 +90,9 @@ export default function SignUpForm() {
               width="full"
               mt={4}
             >
-              Cadastrar
+              Entrar
             </Button>
-            <NextLink href="/login" passHref>
+            <NextLink href="/sign-up" passHref>
               <Button
                 as={Link}
                 type="button"
@@ -108,7 +101,7 @@ export default function SignUpForm() {
                 size="sm"
                 width="full"
               >
-                Já tenho conta
+                Quero me cadastrar
               </Button>
             </NextLink>
           </Stack>
