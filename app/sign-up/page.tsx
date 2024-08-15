@@ -16,6 +16,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import NextLink from "next/link";
 import useSWRMutation from "swr/mutation";
+import { useAuth } from "@/contexts/AuthContext";
+
 const schema = yup.object().shape({
   name: yup.string().required("Nome é obrigatório"),
   email: yup.string().email("E-mail inválido").required("E-mail é obrigatório"),
@@ -25,13 +27,28 @@ const schema = yup.object().shape({
     .required("Senha é obrigatória"),
 });
 
-async function onSignUp(_key: string, { arg }: { arg: { name: string } }) {
-  await fetch(`${process.env.API_URL}/auth/local`, {
+type FormData = yup.InferType<typeof schema>;
+
+async function onSignUp(
+  url: string,
+  {
+    arg: { email, name, password },
+  }: { arg: { name: string; email: string; password: string } }
+) {
+  const response = await fetch(url, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${arg}`,
+      "Content-Type": "application/json",
     },
+    body: JSON.stringify({ username: email, name, email, password }),
   });
+  const data = await response.json();
+
+  if (data.jwt) {
+    return data.jwt;
+  } else {
+    throw new Error("Erro ao se cadastrar. Tente mais tarde.");
+  }
 }
 
 export default function SignUpForm() {
@@ -42,12 +59,18 @@ export default function SignUpForm() {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const { trigger } = useSWRMutation("signup", onSignUp);
+  const { login } = useAuth();
+  const { trigger } = useSWRMutation(
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/auth/local/register`,
+    onSignUp
+  );
 
-  const onSubmit = () => {
-    trigger({
-      name: "ae",
-    });
+  const onSubmit = async (data: FormData) => {
+    const jwt = await trigger(data);
+
+    if (jwt) {
+      login(jwt);
+    }
   };
 
   return (
