@@ -21,7 +21,7 @@ export default function Home() {
           left="0"
           width="100%"
           height="100%"
-          bgGradient="linear(to-r, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8))"
+          bgGradient="linear(to-r, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4))"
           zIndex="1"
         />
         <Container
@@ -36,10 +36,15 @@ export default function Home() {
             mb={6}
             fontWeight="bold"
             lineHeight="shorter"
+            textShadow="0px 2px 4px rgba(0, 0, 0, 0.7)"
           >
             Simplifique a Cobrança na Sua Academia
           </Heading>
-          <Text fontSize="lg" mb={8}>
+          <Text
+            fontSize="lg"
+            textShadow="0px 2px 4px rgba(0, 0, 0, 0.7)"
+            mb={8}
+          >
             Automatize as cobranças, aceite pagamentos via Pix e cartão de
             crédito. Tudo em um só lugar.
           </Text>
