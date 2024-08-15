@@ -1,5 +1,6 @@
-import { Box, Heading, Text, Button, Container } from "@chakra-ui/react";
+import { Box, Heading, Text, Button, Container, Link } from "@chakra-ui/react";
 import Layout from "../components/Layout";
+import NextLink from "next/link";
 
 export default function Home() {
   return (
@@ -48,14 +49,17 @@ export default function Home() {
             Automatize as cobranças, aceite pagamentos via Pix e cartão de
             crédito. Tudo em um só lugar.
           </Text>
-          <Button
-            size="lg"
-            colorScheme="teal"
-            bg="teal.400"
-            _hover={{ bg: "teal.500" }}
-          >
-            Comece Agora
-          </Button>
+          <NextLink href="/sign-up" passHref>
+            <Button
+              as={Link}
+              size="lg"
+              colorScheme="teal"
+              bg="#34657f"
+              _hover={{ bg: "#34657f", textDecoration: "none" }}
+            >
+              Comece Agora
+            </Button>
+          </NextLink>
         </Container>
       </Box>
     </Layout>

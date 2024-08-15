@@ -1,0 +1,114 @@
+"use client";
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Stack,
+  Heading,
+  Text,
+} from "@chakra-ui/react";
+import Image from "next/image";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup.object().shape({
+  name: yup.string().required("Nome é obrigatório"),
+  email: yup.string().email("E-mail inválido").required("E-mail é obrigatório"),
+  password: yup
+    .string()
+    .min(6, "A senha deve ter pelo menos 6 caracteres")
+    .required("Senha é obrigatória"),
+});
+
+export default function SignUpForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = () => {};
+
+  return (
+    <Box
+      minH="100vh"
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      px={10}
+    >
+      <Box mb={10}>
+        <Image
+          style={{ margin: "0 auto" }}
+          src="/logo2.png"
+          alt="pague.fit"
+          width={240}
+          height={120}
+        />
+      </Box>
+      <Box
+        mx="auto"
+        width="100%"
+        maxW="md"
+        p={8}
+        borderWidth={1}
+        borderRadius="lg"
+        boxShadow="lg"
+      >
+        <Heading as="h2" size="lg" textAlign="center" mb={6}>
+          Cadastre-se
+        </Heading>
+
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Stack spacing={4}>
+            <FormControl id="name" isInvalid={!!errors.name}>
+              <FormLabel>Nome</FormLabel>
+              <Input type="text" {...register("name")} />
+              <Text color="red.500" fontSize="sm">
+                {errors.name?.message}
+              </Text>
+            </FormControl>
+            <FormControl id="email" isInvalid={!!errors.email}>
+              <FormLabel>Email</FormLabel>
+              <Input type="email" {...register("email")} />
+              <Text color="red.500" fontSize="sm">
+                {errors.email?.message}
+              </Text>
+            </FormControl>
+            <FormControl id="password" isInvalid={!!errors.password}>
+              <FormLabel>Senha</FormLabel>
+              <Input type="password" {...register("password")} />
+              <Text color="red.500" fontSize="sm">
+                {errors.password?.message}
+              </Text>
+            </FormControl>
+            <Button
+              type="submit"
+              background="#34657f"
+              color="white"
+              size="lg"
+              width="full"
+            >
+              Cadastrar
+            </Button>
+            <Button
+              type="button"
+              variant="link"
+              color="#34657f"
+              size="sm"
+              width="full"
+            >
+              Já tenho conta
+            </Button>
+          </Stack>
+        </form>
+      </Box>
+    </Box>
+  );
+}
