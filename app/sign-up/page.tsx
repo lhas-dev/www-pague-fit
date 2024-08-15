@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import NextLink from "next/link";
+import useSWRMutation from "swr/mutation";
 const schema = yup.object().shape({
   name: yup.string().required("Nome é obrigatório"),
   email: yup.string().email("E-mail inválido").required("E-mail é obrigatório"),
@@ -24,6 +25,15 @@ const schema = yup.object().shape({
     .required("Senha é obrigatória"),
 });
 
+async function onSignUp(_key: string, { arg }: { arg: { name: string } }) {
+  await fetch(`${process.env.API_URL}/auth/local`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${arg}`,
+    },
+  });
+}
+
 export default function SignUpForm() {
   const {
     register,
@@ -32,8 +42,13 @@ export default function SignUpForm() {
   } = useForm({
     resolver: yupResolver(schema),
   });
+  const { trigger } = useSWRMutation("signup", onSignUp);
 
-  const onSubmit = () => {};
+  const onSubmit = () => {
+    trigger({
+      name: "ae",
+    });
+  };
 
   return (
     <Box
@@ -50,7 +65,8 @@ export default function SignUpForm() {
           src="/logo2.png"
           alt="pague.fit"
           width={240}
-          height={120}
+          height={71}
+          priority={true}
         />
       </Box>
       <Box
@@ -58,7 +74,7 @@ export default function SignUpForm() {
         width="100%"
         maxW="md"
         p={8}
-        borderWidth={1}
+        borderWidth={0}
         borderRadius="lg"
         boxShadow="lg"
       >
@@ -99,18 +115,17 @@ export default function SignUpForm() {
             >
               Cadastrar
             </Button>
-            <NextLink href="/login" passHref>
-              <Button
-                as={Link}
-                type="button"
-                variant="link"
-                color="#34657f"
-                size="sm"
-                width="full"
-              >
-                Já tenho conta
-              </Button>
-            </NextLink>
+            <Button
+              as={NextLink}
+              href="/login"
+              type="button"
+              variant="link"
+              color="#34657f"
+              size="sm"
+              width="full"
+            >
+              Já tenho conta
+            </Button>
           </Stack>
         </form>
       </Box>

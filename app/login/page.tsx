@@ -50,7 +50,8 @@ export default function LoginForm() {
           src="/logo2.png"
           alt="pague.fit"
           width={240}
-          height={120}
+          height={71}
+          priority={true}
         />
       </Box>
       <Box
@@ -58,7 +59,7 @@ export default function LoginForm() {
         width="100%"
         maxW="md"
         p={8}
-        borderWidth={1}
+        borderWidth={0}
         borderRadius="lg"
         boxShadow="lg"
       >
@@ -92,18 +93,17 @@ export default function LoginForm() {
             >
               Entrar
             </Button>
-            <NextLink href="/sign-up" passHref>
-              <Button
-                as={Link}
-                type="button"
-                variant="link"
-                color="#34657f"
-                size="sm"
-                width="full"
-              >
-                Quero me cadastrar
-              </Button>
-            </NextLink>
+            <Button
+              as={NextLink}
+              href="/sign-up"
+              type="button"
+              variant="link"
+              color="#34657f"
+              size="sm"
+              width="full"
+            >
+              Quero me cadastrar
+            </Button>
           </Stack>
         </form>
       </Box>

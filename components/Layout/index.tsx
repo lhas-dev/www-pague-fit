@@ -16,7 +16,13 @@ const Layout: FC<PropsWithChildren<{}>> = ({ children }) => {
         align="center"
       >
         <NextLink href="/" passHref>
-          <Image src="/logo.png" width={150} height={50} alt="pague.fit" />
+          <Image
+            src="/logo.png"
+            width={150}
+            height={50}
+            alt="pague.fit"
+            priority={true}
+          />
         </NextLink>
         <Stack direction="row" spacing={4}>
           <NextLink href="/" passHref>
