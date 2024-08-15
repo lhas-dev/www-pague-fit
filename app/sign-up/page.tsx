@@ -60,14 +60,16 @@ export default function SignUpForm() {
       px={10}
     >
       <Box mb={10}>
-        <Image
-          style={{ margin: "0 auto" }}
-          src="/logo2.png"
-          alt="pague.fit"
-          width={240}
-          height={71}
-          priority={true}
-        />
+        <NextLink href="/">
+          <Image
+            style={{ margin: "0 auto" }}
+            src="/logo2.png"
+            alt="pague.fit"
+            width={240}
+            height={71}
+            priority={true}
+          />
+        </NextLink>
       </Box>
       <Box
         mx="auto"

@@ -49,17 +49,16 @@ export default function Home() {
             Automatize as cobranças, aceite pagamentos via Pix e cartão de
             crédito. Tudo em um só lugar.
           </Text>
-          <NextLink href="/sign-up" passHref>
-            <Button
-              as={Link}
-              size="lg"
-              colorScheme="teal"
-              bg="#34657f"
-              _hover={{ bg: "#34657f", textDecoration: "none" }}
-            >
-              Comece Agora
-            </Button>
-          </NextLink>
+          <Button
+            as={NextLink}
+            href="/sign-up"
+            size="lg"
+            colorScheme="teal"
+            bg="#34657f"
+            _hover={{ bg: "#34657f", textDecoration: "none" }}
+          >
+            Comece Agora
+          </Button>
         </Container>
       </Box>
     </Layout>

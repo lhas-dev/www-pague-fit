@@ -15,31 +15,31 @@ const Layout: FC<PropsWithChildren<{}>> = ({ children }) => {
         justify="space-between"
         align="center"
       >
-        <NextLink href="/" passHref>
+        <NextLink href="/">
           <Image
             src="/logo.png"
             width={150}
-            height={50}
+            height={22}
             alt="pague.fit"
             priority={true}
           />
         </NextLink>
         <Stack direction="row" spacing={4}>
-          <NextLink href="/" passHref>
-            <Link>Home</Link>
-          </NextLink>
-          <NextLink href="/features" passHref>
-            <Link>Funcionalidades</Link>
-          </NextLink>
-          <NextLink href="/pricing" passHref>
-            <Link>Preços</Link>
-          </NextLink>
-          <NextLink href="/about" passHref>
-            <Link>Sobre</Link>
-          </NextLink>
-          <NextLink href="/contact" passHref>
-            <Link>Contato</Link>
-          </NextLink>
+          <Link as={NextLink} href="/">
+            Home
+          </Link>
+          <Link as={NextLink} href="/features">
+            Funcionalidades
+          </Link>
+          <Link as={NextLink} href="/pricing">
+            Preços
+          </Link>
+          <Link as={NextLink} href="/about">
+            Sobre
+          </Link>
+          <Link as={NextLink} href="/contact">
+            Contato
+          </Link>
         </Stack>
       </Flex>
 
