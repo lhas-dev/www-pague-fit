@@ -13,7 +13,7 @@ import Layout from "../../components/Layout";
 export default function Contact() {
   return (
     <Layout>
-      <Box textAlign="center" py={10}>
+      <Box textAlign="center" px={10} py={10}>
         <Heading as="h2" size="xl" mb={6}>
           Contato
         </Heading>

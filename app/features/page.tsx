@@ -1,3 +1,5 @@
+"use client";
+
 import { Box, Heading, Text, SimpleGrid, Icon } from "@chakra-ui/react";
 import { FaRegMoneyBillAlt, FaClock, FaMobileAlt } from "react-icons/fa";
 import Layout from "../../components/Layout";
@@ -5,8 +7,8 @@ import Layout from "../../components/Layout";
 export default function Features() {
   return (
     <Layout>
-      <Box textAlign="center" py={10}>
-        <Heading as="h2" size="xl" mb={6}>
+      <Box display="flex" flexDirection="column" textAlign="center" py={10}>
+        <Heading as="h2" size="xl" mb={12}>
           Funcionalidades
         </Heading>
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
