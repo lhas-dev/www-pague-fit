@@ -1,4 +1,5 @@
 import { Box, Flex, Link, Stack, Text } from "@chakra-ui/react";
+import Image from "next/image";
 import NextLink from "next/link";
 import { FC, PropsWithChildren } from "react";
 
@@ -8,15 +9,15 @@ const Layout: FC<PropsWithChildren<{}>> = ({ children }) => {
       {/* Navbar */}
       <Flex
         as="nav"
-        bg="blue.500"
+        bg="#34657f"
         color="white"
         p={4}
         justify="space-between"
         align="center"
       >
-        <Text fontSize="lg" fontWeight="bold">
-          pague.fit
-        </Text>
+        <NextLink href="/" passHref>
+          <Image src="/logo.png" width={150} height={50} alt="pague.fit" />
+        </NextLink>
         <Stack direction="row" spacing={4}>
           <NextLink href="/" passHref>
             <Link>Home</Link>
@@ -41,7 +42,7 @@ const Layout: FC<PropsWithChildren<{}>> = ({ children }) => {
       {/* Footer */}
       <Flex
         as="footer"
-        bg="blue.500"
+        bg="#34657f"
         color="white"
         p={4}
         justify="center"
